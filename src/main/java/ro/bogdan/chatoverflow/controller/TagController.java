@@ -11,14 +11,16 @@ import ro.bogdan.chatoverflow.service.TagService;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/tag")
 public class TagController {
     @Autowired
     private TagService tagService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/tags")
+    @RequestMapping(method = RequestMethod.GET, value = "/all-tags")
     @ResponseBody
     private List<Tag> getTags(){
-        return tagService.findTags();
+        return tagService.getTags();
     }
+
 
 }

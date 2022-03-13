@@ -6,4 +6,9 @@ import ro.bogdan.chatoverflow.model.TagItem;
 
 @Repository
 public interface ITagItemRepository extends CrudRepository<TagItem, Integer> {
+
+    Iterable<TagItem> findTagItemsByQuestionQuestionIdIs(Integer id);
+
+    TagItem findTagItemByQuestionQuestionIdAndTagName(int id, String name);
+
 }

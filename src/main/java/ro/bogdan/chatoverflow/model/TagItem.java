@@ -14,12 +14,10 @@ public class TagItem {
 
     @ManyToOne()
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    @JsonBackReference
     private Question question;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tag_name_id", referencedColumnName = "tag_id")
-    @JsonBackReference
     private Tag tag;
 
     public TagItem(int id, Question question, Tag tag) {
@@ -29,6 +27,11 @@ public class TagItem {
     }
 
     public TagItem(){
+    }
+
+    public TagItem(Question question, Tag tag) {
+        this.question = question;
+        this.tag = tag;
     }
 
     public int getId() {

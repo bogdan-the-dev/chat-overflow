@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private int id;
+    private int userId;
 
     @Column(name = "username")
     private String username;
@@ -40,14 +40,8 @@ public class User {
     @JoinColumn(name = "user_role_id", referencedColumnName = "role_id")
     private Role role;
 
-    @OneToMany(mappedBy = "author")
-    private List<Answer> answers;
-
-    @OneToMany(mappedBy = "author")
-    private List<Question> questions;
-
-    public User(int id, String username, String email, String passwordHash, boolean accountVerified, boolean accountBlocked, boolean accountBanned, boolean twoFA, int score, Role role, List<Answer> answers, List<Question> questions) {
-        this.id = id;
+    public User(int userId, String username, String email, String passwordHash, boolean accountVerified, boolean accountBlocked, boolean accountBanned, boolean twoFA, int score, Role role) {
+        this.userId = userId;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
@@ -57,19 +51,17 @@ public class User {
         this.twoFA = twoFA;
         this.score = score;
         this.role = role;
-        this.answers = answers;
-        this.questions = questions;
     }
 
     public User() {
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -142,38 +134,6 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public void addQuestion(Question question){
-        this.questions.add(question);
-    }
-
-    public void deleteQuestion(Question question){
-        this.questions.remove(question);
-    }
-
-    public void addAnswer(Answer answer){
-        this.answers.add(answer);
-    }
-
-    public void deleteAnswer(Answer answer){
-        this.answers.remove(answer);
     }
 }
 
