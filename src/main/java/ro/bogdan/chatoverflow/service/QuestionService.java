@@ -55,8 +55,10 @@ public class QuestionService {
 
     public void deleteQuestion(Integer id) throws Exception {
         try {
+            tagItemService.deleteAllTagsFromQuestion(id);
             iQuestionRepository.delete(this.getQuestionById(id));
         }catch (Exception e){
+            e.printStackTrace();
             throw new Exception("Delete failed, question not found");
         }
     }
