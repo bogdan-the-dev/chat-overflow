@@ -36,6 +36,10 @@ public class QuestionService {
         return questionDTOS;
     }
 
+    public Question getQuestionById(int question_id) {
+        return this.iQuestionRepository.findById(question_id).orElse(null);
+    }
+
     public List<QuestionDTO> getQuestionsByName(String name){
         List<Question> questions = (List<Question>)iQuestionRepository.findQuestionsByTitleContainingIgnoreCaseOrderByCreationDateDesc(name);
         ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
@@ -56,7 +60,7 @@ public class QuestionService {
 
     public void deleteQuestion(Integer id) throws Exception {
         try {
-            tagItemService.deleteAllTagsFromQuestion(id);
+           // tagItemService.deleteAllTagsFromQuestion(id);
             iQuestionRepository.delete(this.getQuestionById(id));
         }catch (Exception e){
             e.printStackTrace();
