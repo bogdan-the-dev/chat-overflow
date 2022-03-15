@@ -6,7 +6,7 @@ import ro.bogdan.chatoverflow.model.Tag;
 import java.util.Calendar;
 import java.util.List;
 
-public class QuestionDTO {
+public class QuestionDTO implements Comparable<QuestionDTO> {
 
     private int questionId;
 
@@ -120,4 +120,11 @@ public class QuestionDTO {
         return answers;
     }
 
+    @Override
+    public int compareTo(QuestionDTO o) {
+        if (this.creationDate.after(o.getCreationDate()))
+            return 1;
+        else
+            return 0;
+    }
 }

@@ -1,5 +1,6 @@
 package ro.bogdan.chatoverflow.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,10 +13,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public interface IQuestionRepository extends CrudRepository<Question, Integer> {
+public interface IQuestionRepository extends JpaRepository<Question, Integer> {
 
-    Iterable<Question> findQuestionsByTitleContainingIgnoreCase(String name);
+    Iterable<Question> findQuestionsByTitleContainingIgnoreCaseOrderByCreationDateDesc(String name);
 
+    Iterable<Question> findAllByOrderByCreationDateDesc();
 //    @NamedQuery(name = "findAllQuestionsDTO", query = "")
 
 

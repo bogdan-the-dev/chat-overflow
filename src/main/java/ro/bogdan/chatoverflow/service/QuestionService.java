@@ -9,6 +9,7 @@ import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IQuestionRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class QuestionService {
     private UserService userService;
 
     public List<QuestionDTO> getQuestions(){
-        List<Question> questions = (List<Question>) iQuestionRepository.findAll();
+        List<Question> questions = (List<Question>) iQuestionRepository.findAllByOrderByCreationDateDesc();
         ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
         for(Question question: questions){
             questionDTOS.add(covertToDTO(question));
@@ -36,7 +37,7 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getQuestionsByName(String name){
-        List<Question> questions = (List<Question>)iQuestionRepository.findQuestionsByTitleContainingIgnoreCase(name);
+        List<Question> questions = (List<Question>)iQuestionRepository.findQuestionsByTitleContainingIgnoreCaseOrderByCreationDateDesc(name);
         ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
         for(Question question: questions){
             questionDTOS.add(covertToDTO(question));
@@ -75,6 +76,7 @@ public class QuestionService {
         for(Question question: questions) {
             questionDTOS.add(covertToDTO(question));
         }
+        Collections.sort(questionDTOS);
         return questionDTOS;
     }
 
