@@ -6,4 +6,6 @@ import ro.bogdan.chatoverflow.model.User;
 
 @Repository
 public interface IUserRepository extends CrudRepository<User, Integer> {
+
+    Iterable<User> findUserByUsernameContainingIgnoreCase(String username);
 }

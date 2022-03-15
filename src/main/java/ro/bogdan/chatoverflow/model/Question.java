@@ -1,10 +1,8 @@
 package ro.bogdan.chatoverflow.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "question", schema = "chatoverflow")
@@ -13,7 +11,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "question_id")
-    private int id;
+    private int questionId;
 
     @Column(name = "title")
     private String title;
@@ -26,34 +24,33 @@ public class Question {
     private String text;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private Calendar creationDate;
 
-    @Column(name = "score")
-    private int score;
+    @Column(name = "up_votes")
+    private int upVotes;
 
-    @OneToMany(mappedBy = "question")
-    @JsonManagedReference
-    private List<TagItem> tagItem;
+    @Column(name = "down_votes")
+    private int downVotes;
 
-    public Question(int id, String title, User author, String text, Date creationDate, int score, List<TagItem> tagItem) {
-        this.id = id;
+    public Question(int questionId, String title, User author, String text, Calendar creationDate, int upVotes, int downVotes) {
+        this.questionId = questionId;
         this.title = title;
         this.author = author;
         this.text = text;
         this.creationDate = creationDate;
-        this.score = score;
-        this.tagItem = tagItem;
+        this.upVotes = upVotes;
+        this.downVotes = downVotes;
     }
 
     public Question(){
     }
 
-    public int getId() {
-        return id;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public String getTitle() {
@@ -80,27 +77,28 @@ public class Question {
         this.text = text;
     }
 
-    public Date getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
     }
 
-    public int getScore() {
-        return score;
+    public int getUpVotes() {
+        return upVotes;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setUpVotes(int upVotes) {
+        this.upVotes = upVotes;
     }
 
-    public List<TagItem> getTagItem() {
-        return tagItem;
+    public int getDownVotes() {
+        return downVotes;
     }
 
-    public void setTagItem(List<TagItem> tagItem) {
-        this.tagItem = tagItem;
+    public void setDownVotes(int downVotes) {
+        this.downVotes = downVotes;
     }
+
 }

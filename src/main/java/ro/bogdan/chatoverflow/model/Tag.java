@@ -11,23 +11,22 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="tag_id")
+    @Column(name = "tag_id")
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "tag")
-    @JsonManagedReference
-    private List<TagItem> tags;
-
-    public Tag(int id, String name, List<TagItem> tags) {
+    public Tag(int id, String name) {
         this.id = id;
         this.name = name;
-        this.tags = tags;
     }
 
-    public Tag(){
+    public Tag(String name) {
+        this.name = name;
+    }
+
+    public Tag() {
     }
 
     public int getId() {
@@ -44,13 +43,5 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<TagItem> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<TagItem> tags) {
-        this.tags = tags;
     }
 }
