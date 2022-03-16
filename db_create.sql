@@ -410,7 +410,6 @@ COPY chatoverflow.tag_item (id, question_id, tag_name_id) FROM stdin;
 
 COPY chatoverflow."user" (id, account_banned, account_blocked, account_verified, email, password_hash, score, two_factor_authentication, username, user_role_id) FROM stdin;
 87	f	f	t	test2@gmail.com	sdoif;souio	0	f	test account	2
-88	f	t	f	test3@gmail.com	sdoif;souio	0	f	test account 1	2
 1	f	f	f	test@gmail.com	gkf'sdoif;souio	10	f	test	2
 \.
 
@@ -429,14 +428,14 @@ COPY chatoverflow.vote (vote_id, user_id, score, question_id, answer_id) FROM st
 -- Name: answer_id_seq; Type: SEQUENCE SET; Schema: chatoverflow; Owner: bogdan
 --
 
-SELECT pg_catalog.setval('chatoverflow.answer_id_seq', 3, true);
+SELECT pg_catalog.setval('chatoverflow.answer_id_seq', 4, true);
 
 
 --
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: chatoverflow; Owner: bogdan
 --
 
-SELECT pg_catalog.setval('chatoverflow.hibernate_sequence', 112, true);
+SELECT pg_catalog.setval('chatoverflow.hibernate_sequence', 115, true);
 
 
 --
@@ -602,7 +601,7 @@ ALTER TABLE ONLY chatoverflow.vote
 --
 
 ALTER TABLE ONLY chatoverflow.answer
-    ADD CONSTRAINT fkolf6i0leyabfmmd5pwb8mt2cr FOREIGN KEY (answer_author_id) REFERENCES chatoverflow."user"(id);
+    ADD CONSTRAINT fkolf6i0leyabfmmd5pwb8mt2cr FOREIGN KEY (answer_author_id) REFERENCES chatoverflow."user"(id) ON DELETE CASCADE;
 
 
 --
