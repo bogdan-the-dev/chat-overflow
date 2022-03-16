@@ -90,9 +90,7 @@ CREATE TABLE chatoverflow.question (
     creation_date timestamp without time zone,
     text text,
     title character varying(255),
-    question_author_id integer,
-    down_votes integer,
-    up_votes integer
+    question_author_id integer
 );
 
 
@@ -365,11 +363,11 @@ COPY chatoverflow.answer (id, body, date, edited, answer_author_id, question_id)
 -- Data for Name: question; Type: TABLE DATA; Schema: chatoverflow; Owner: bogdan
 --
 
-COPY chatoverflow.question (question_id, creation_date, text, title, question_author_id, down_votes, up_votes) FROM stdin;
-4	2022-03-15 11:09:47	Test question body	Test question title	1	\N	\N
-3	2022-02-28 23:36:56	Body 2	Title 2	1	\N	\N
-1	2022-02-28 23:36:56	text	text	1	\N	\N
-2	2022-02-28 23:36:56	Body for title 3	Title 3	1	\N	\N
+COPY chatoverflow.question (question_id, creation_date, text, title, question_author_id) FROM stdin;
+4	2022-03-15 11:09:47	Test question body	Test question title	1
+3	2022-02-28 23:36:56	Body 2	Title 2	1
+1	2022-02-28 23:36:56	text	text	1
+2	2022-02-28 23:36:56	Body for title 3	Title 3	1
 \.
 
 
@@ -411,9 +409,9 @@ COPY chatoverflow.tag_item (id, question_id, tag_name_id) FROM stdin;
 --
 
 COPY chatoverflow."user" (id, account_banned, account_blocked, account_verified, email, password_hash, score, two_factor_authentication, username, user_role_id) FROM stdin;
-1	f	f	f	test@gmail.com	gkf'sdoif;souio	0	f	test	2
 87	f	f	t	test2@gmail.com	sdoif;souio	0	f	test account	2
 88	f	t	f	test3@gmail.com	sdoif;souio	0	f	test account 1	2
+1	f	f	f	test@gmail.com	gkf'sdoif;souio	10	f	test	2
 \.
 
 
@@ -438,7 +436,7 @@ SELECT pg_catalog.setval('chatoverflow.answer_id_seq', 3, true);
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: chatoverflow; Owner: bogdan
 --
 
-SELECT pg_catalog.setval('chatoverflow.hibernate_sequence', 99, true);
+SELECT pg_catalog.setval('chatoverflow.hibernate_sequence', 112, true);
 
 
 --
@@ -537,6 +535,13 @@ ALTER TABLE ONLY chatoverflow."user"
 
 ALTER TABLE ONLY chatoverflow.vote
     ADD CONSTRAINT vote_pk PRIMARY KEY (vote_id);
+
+
+--
+-- Name: roles_name_uindex; Type: INDEX; Schema: chatoverflow; Owner: bogdan
+--
+
+CREATE UNIQUE INDEX roles_name_uindex ON chatoverflow.roles USING btree (name);
 
 
 --

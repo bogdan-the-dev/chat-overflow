@@ -238,6 +238,84 @@
 			]
 		},
 		{
+			"name": "localhost:8080/questions/find-by-tag?tag=doro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/find-by-tag?tag=doro",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"find-by-tag"
+					],
+					"query": [
+						{
+							"key": "tag",
+							"value": "doro"
+						}
+					]
+				},
+				"description": "search questions by tag"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/find-by-tag?tag=doro",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/questions/find-by-tag?tag=doro",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"find-by-tag"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "doro"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 12:18:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"questionId\": 3,\n        \"title\": \"Title 2\",\n        \"text\": \"Body 2\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [\n            \"quiz\",\n            \"utcn\",\n            \"doro\"\n        ],\n        \"answers\": []\n    }\n]"
+				}
+			]
+		},
+		{
 			"name": "localhost:8080/questions/delete-question?id=82",
 			"request": {
 				"method": "DELETE",
@@ -1266,6 +1344,84 @@
 					],
 					"cookie": [],
 					"body": "Answer deleted"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/roles/add?name=admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/roles/add?name=admin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roles",
+						"add"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "admin"
+						}
+					]
+				},
+				"description": "add role"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/roles/add?name=admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/roles/add?name=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"roles",
+								"add"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 12:20:12 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 110,\n    \"name\": \"admin\"\n}"
 				}
 			]
 		}
