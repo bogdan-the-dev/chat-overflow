@@ -17,13 +17,13 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/all-users")
     @ResponseBody
-    private List<User> getUsers(){
+    private List<User> getUsers() {
         return userService.getUsers();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    private User findUser(@RequestParam(name = "name") String name){
+    private User findUser(@RequestParam(name = "name") String name) {
         return userService.getUserByUsername(name);
     }
 
@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete-user")
     @ResponseBody
-    private String deleteUser(@RequestParam(name = "id") Integer id){
+    private String deleteUser(@RequestParam(name = "id") Integer id) {
         try {
             userService.deleteUser(id);
         } catch (Exception e) {

@@ -82,7 +82,7 @@ public class QuestionDTO implements Comparable<QuestionDTO> {
         this.tags = tags;
     }
 
-    public void setAnswers(List<AnswerDTO> answers){
+    public void setAnswers(List<AnswerDTO> answers) {
         this.answers = answers;
     }
 

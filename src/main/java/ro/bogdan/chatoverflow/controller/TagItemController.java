@@ -20,7 +20,7 @@ public class TagItemController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/tagitems")
     @ResponseBody
-    private List<TagItem> getTagItems(){
+    private List<TagItem> getTagItems() {
         return tagItemService.findTagItems();
     }
 

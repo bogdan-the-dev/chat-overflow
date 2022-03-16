@@ -25,7 +25,7 @@ public class VoteService {
     private final QuestionService questionService;
 
     @Autowired
-    public VoteService(@Lazy AnswerService answerService, @Lazy QuestionService questionService){
+    public VoteService(@Lazy AnswerService answerService, @Lazy QuestionService questionService) {
         this.answerService = answerService;
         this.questionService = questionService;
     }
@@ -81,7 +81,7 @@ public class VoteService {
 
     public void deleteVote(VoteDTO voteDTO) {
         User user = this.userService.getUserByUsername(voteDTO.getUsername());
-        if(voteDTO.getQuestionId() != null) {
+        if (voteDTO.getQuestionId() != null) {
             Vote deletionVote = this.iVoteRepository.getVoteByQuestionQuestionIdAndUserUserId(voteDTO.getQuestionId(), user.getUserId()).orElse(null);
             deleteQuestionVote(deletionVote);
         } else {
@@ -93,9 +93,9 @@ public class VoteService {
     private void deleteQuestionVote(Vote vote) {
         int score = vote.getScore();
         User votedUser = this.userService.getUserById(vote.getQuestion().getAuthor().getUserId());
-        if(score == 1) {
+        if (score == 1) {
             votedUser.downVote(5);
-        } else if(score == -1) {
+        } else if (score == -1) {
             votedUser.upVote(2);
         }
         this.userService.saveUser(votedUser);
@@ -105,9 +105,9 @@ public class VoteService {
     private void deleteAnswerVote(Vote vote, String votingUsername) {
         int score = vote.getScore();
         User votedUser = this.userService.getUserById(vote.getQuestion().getAuthor().getUserId());
-        if(score == 1) {
+        if (score == 1) {
             votedUser.downVote(5);
-        } else if(score == -1) {
+        } else if (score == -1) {
             User votingUser = this.userService.getUserByUsername(votingUsername);
             votingUser.upVote(1);
             this.userService.saveUser(votingUser);
@@ -117,14 +117,14 @@ public class VoteService {
         this.iVoteRepository.delete(vote);
     }
 
-    private void addAnswerUpVote(Vote vote){
+    private void addAnswerUpVote(Vote vote) {
         this.iVoteRepository.save(vote);
         User votedUser = this.userService.getUserById(vote.getAnswer().getAuthor().getUserId());
         votedUser.upVote(10);
         this.userService.saveUser(votedUser);
     }
 
-    private void addAnswerDownVote(Vote vote, String votingUsername){
+    private void addAnswerDownVote(Vote vote, String votingUsername) {
         this.iVoteRepository.save(vote);
         User votedUser = this.userService.getUserById(vote.getAnswer().getAuthor().getUserId());
         User votingUser = this.userService.getUserByUsername(votingUsername);
@@ -134,30 +134,30 @@ public class VoteService {
         this.userService.saveUser(votingUser);
     }
 
-    private void changeAnswerVote(Vote newVote, int newScore, String votingUsername){
+    private void changeAnswerVote(Vote newVote, int newScore, String votingUsername) {
         newVote.setScore(newScore);
         this.iVoteRepository.save(newVote);
         User votedUser = this.userService.getUserById(newVote.getAnswer().getAuthor().getUserId());
-        if(newScore == 1) {
+        if (newScore == 1) {
             votedUser.upVote(12);
             User votingUser = this.userService.getUserByUsername(votingUsername);
             votingUser.upVote(2);
             this.userService.saveUser(votingUser);
         }
-        if(newScore == -1) {
+        if (newScore == -1) {
             votedUser.downVote(12);
         }
         this.userService.saveUser(votedUser);
     }
 
-    private void changeQuestionVote(Vote newVote, int newScore){
+    private void changeQuestionVote(Vote newVote, int newScore) {
         newVote.setScore(newScore);
         this.iVoteRepository.save(newVote);
         User votedUser = this.userService.getUserById(newVote.getAnswer().getAuthor().getUserId());
-        if(newScore == 1) {
+        if (newScore == 1) {
             votedUser.upVote(7);
         }
-        if(newScore == -1) {
+        if (newScore == -1) {
             votedUser.downVote(-7);
         }
     }
@@ -169,7 +169,7 @@ public class VoteService {
         this.userService.saveUser(votedUser);
     }
 
-    private void addQuestionDownVote(Vote vote){
+    private void addQuestionDownVote(Vote vote) {
         this.iVoteRepository.save(vote);
         User votedUser = this.userService.getUserById(vote.getQuestion().getAuthor().getUserId());
         votedUser.downVote(2);

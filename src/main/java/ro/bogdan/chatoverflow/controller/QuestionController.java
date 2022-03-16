@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ro.bogdan.chatoverflow.DTO.QuestionDTO;
-import ro.bogdan.chatoverflow.model.Question;
 import ro.bogdan.chatoverflow.service.QuestionService;
 
 import java.util.List;
@@ -18,30 +17,30 @@ public class QuestionController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/all-questions")
     @ResponseBody
-    private List<QuestionDTO> getQuestions(){
+    private List<QuestionDTO> getQuestions() {
         return questionService.getQuestions();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    private List<QuestionDTO> findQuestionsByName(@RequestParam(name = "name") String name){
+    private List<QuestionDTO> findQuestionsByName(@RequestParam(name = "name") String name) {
         return questionService.getQuestionsByName(name);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/find-question")
     @ResponseBody
-    private QuestionDTO getQuestionById(@RequestParam(name = "id") Integer id){
+    private QuestionDTO getQuestionById(@RequestParam(name = "id") Integer id) {
         return questionService.getQuestionDTOById(id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete-question")
     @ResponseBody
-    private String deleteQuestion(@RequestParam(name = "id") Integer id){
+    private String deleteQuestion(@RequestParam(name = "id") Integer id) {
         try {
             questionService.deleteQuestion(id);
 
-        }catch (Exception e){
-            
+        } catch (Exception e) {
+
             return e.getMessage();
         }
         return "The delete was successful";

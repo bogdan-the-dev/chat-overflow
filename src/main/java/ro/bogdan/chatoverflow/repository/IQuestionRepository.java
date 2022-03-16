@@ -18,7 +18,5 @@ public interface IQuestionRepository extends JpaRepository<Question, Integer> {
     Iterable<Question> findQuestionsByTitleContainingIgnoreCaseOrderByCreationDateDesc(String name);
 
     Iterable<Question> findAllByOrderByCreationDateDesc();
-//    @NamedQuery(name = "findAllQuestionsDTO", query = "")
-
 
 }

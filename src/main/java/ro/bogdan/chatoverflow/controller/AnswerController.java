@@ -19,7 +19,7 @@ public class AnswerController {
         return answerService.saveAnswer(answerDTO);
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/find-answer")
+    @RequestMapping(method = RequestMethod.GET, value = "/find-answer")
     @ResponseBody
     private AnswerDTO findAnswerById(@RequestParam(name = "id") int id) {
         return answerService.getAnswerDTOById(id);

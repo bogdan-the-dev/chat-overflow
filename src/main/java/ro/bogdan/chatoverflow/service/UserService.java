@@ -13,11 +13,11 @@ public class UserService {
     @Autowired
     private IUserRepository iUserRepository;
 
-    public List<User> getUsers(){
-        return (List<User>) iUserRepository.findAll() ;
+    public List<User> getUsers() {
+        return (List<User>) iUserRepository.findAll();
     }
 
-    public User getUserByUsername(String username){
+    public User getUserByUsername(String username) {
         return iUserRepository.findUserByUsernameIs(username).orElse(null);
     }
 
@@ -28,7 +28,7 @@ public class UserService {
     public void deleteUser(Integer id) throws Exception {
         try {
             iUserRepository.delete(this.getUserById(id));
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("Delete failed, user not found");
         }
     }

@@ -21,20 +21,20 @@ public class TagItemService {
     @Autowired
     private TagService tagService;
 
-    public List<TagItem> findTagItems(){
+    public List<TagItem> findTagItems() {
         return (List<TagItem>) iTagItemRepository.findAll();
     }
 
-    public void createAndSaveTagItems(ArrayList<String> tags, Question question){
-        for(String tagName: tags){
-            Tag tag =tagService.saveTag(tagName);
+    public void createAndSaveTagItems(ArrayList<String> tags, Question question) {
+        for (String tagName : tags) {
+            Tag tag = tagService.saveTag(tagName);
             saveTagItem(new TagItem(question, tag));
         }
     }
 
-    public List<Question> getQuestionsByTag(String name){
+    public List<Question> getQuestionsByTag(String name) {
         ArrayList<Question> questions = new ArrayList<>();
-        for (TagItem tagItem: iTagItemRepository.findAll()){
+        for (TagItem tagItem : iTagItemRepository.findAll()) {
             if (tagItem.getTag().getName().toLowerCase().contains(name.toLowerCase())) {
                 questions.add(tagItem.getQuestion());
             }
@@ -45,16 +45,16 @@ public class TagItemService {
     public void updateTagItems(List<String> newTags, Question question) {
         List<String> currentTags = getTagsForQuestion(question.getQuestionId());
         ArrayList<String> createTags = (ArrayList<String>) newTags.stream().filter(element -> !currentTags.contains(element)).collect(Collectors.toList());
-        ArrayList<String> tagsForDeletion = (ArrayList<String>)currentTags.stream().filter(element -> !newTags.contains(element)).collect(Collectors.toList());
+        ArrayList<String> tagsForDeletion = (ArrayList<String>) currentTags.stream().filter(element -> !newTags.contains(element)).collect(Collectors.toList());
         createAndSaveTagItems(createTags, question);
-        for(String tag: tagsForDeletion) {
+        for (String tag : tagsForDeletion) {
             deleteTagItem(question.getQuestionId(), tag);
         }
     }
 
-    public List<String> getTagsForQuestion(int questionId){
+    public List<String> getTagsForQuestion(int questionId) {
         ArrayList<String> tags = new ArrayList<>();
-        for(TagItem tagItem: iTagItemRepository.findTagItemsByQuestionQuestionIdIs(questionId)){
+        for (TagItem tagItem : iTagItemRepository.findTagItemsByQuestionQuestionIdIs(questionId)) {
             tags.add(tagItem.getTag().getName());
         }
         return tags;
@@ -67,13 +67,13 @@ public class TagItemService {
 
     public void deleteTagItem(int tagItemId) {
         TagItem item = iTagItemRepository.findById(tagItemId).orElse(null);
-        if(item != null) {
+        if (item != null) {
             iTagItemRepository.delete(item);
         }
     }
 
-    public TagItem saveTagItem(TagItem tagItem){
-        if(!iTagItemRepository.existsById(tagItem.getId())){
+    public TagItem saveTagItem(TagItem tagItem) {
+        if (!iTagItemRepository.existsById(tagItem.getId())) {
             iTagItemRepository.save(tagItem);
         }
         return tagItem;
