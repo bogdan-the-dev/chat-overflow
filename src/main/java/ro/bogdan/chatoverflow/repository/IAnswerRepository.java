@@ -10,5 +10,4 @@ public interface IAnswerRepository extends CrudRepository<Answer, Integer> {
 
     Iterable<Answer> findAnswersByQuestionIdIs(Integer id);
 
-
 }

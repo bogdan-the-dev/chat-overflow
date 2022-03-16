@@ -34,10 +34,10 @@ public class AnswerService {
         return this.iAnswerRepository.findById(id).orElse(null);
     }
 
-    public List<AnswerDTO> getAnswersByQuestionId(int id){
+    public List<AnswerDTO> getAnswersByQuestionId(int id) {
         List<Answer> answers = (List<Answer>) this.iAnswerRepository.findAnswersByQuestionIdIs(id);
         ArrayList<AnswerDTO> answerDTOS = new ArrayList<>();
-        for(Answer answer: answers){
+        for (Answer answer : answers) {
             answerDTOS.add(convertToAnswerDTO(answer));
         }
         Collections.sort(answerDTOS);
@@ -57,7 +57,7 @@ public class AnswerService {
     public AnswerDTO updateAnswer(AnswerDTO answerDTO) {
         Answer editedAnswer = getAnswerFromAnswerDTO(answerDTO);
         Answer originalAnswer = this.iAnswerRepository.findById(editedAnswer.getId()).orElse(null);
-        if(originalAnswer != null) {
+        if (originalAnswer != null) {
             originalAnswer.setAnswerBody(editedAnswer.getAnswerBody());
             originalAnswer.setEdited(true);
             this.iAnswerRepository.save(originalAnswer);
@@ -65,7 +65,7 @@ public class AnswerService {
         return convertToAnswerDTO(originalAnswer);
     }
 
-    public void deleteAnswer(int id) throws Exception{
+    public void deleteAnswer(int id) throws Exception {
         try {
             Answer answer = getAnswerById(id);
             answer.setAuthor(null);
@@ -81,27 +81,27 @@ public class AnswerService {
         return this.iAnswerRepository.save(answer);
     }
 
-    private AnswerDTO convertToAnswerDTO(Answer answer){
-        if(answer != null){
+    private AnswerDTO convertToAnswerDTO(Answer answer) {
+        if (answer != null) {
             AnswerDTO answerDTO = modelMapper.map(answer, AnswerDTO.class);
             answerDTO.setUsername(answer.getAuthor().getUsername());
             answerDTO.setUserScore(answer.getAuthor().getScore());
             answerDTO.setUpVotes(voteService.getUpVoteForAnswer(answer.getId()));
             answerDTO.setDownVotes(voteService.getDownVoteForAnswer(answer.getId()));
-            return  answerDTO;
+            return answerDTO;
         }
         return null;
     }
 
-    private List<AnswerDTO> getAnswerDTOFromQuestionDTO(QuestionDTO questionDTO){
+    private List<AnswerDTO> getAnswerDTOFromQuestionDTO(QuestionDTO questionDTO) {
         return questionDTO.getAnswers();
     }
 
-    private Answer getAnswerFromAnswerDTO(AnswerDTO answerDTO){
-        if(answerDTO != null){
-            Answer answer =  modelMapper.map(answerDTO, Answer.class);
+    private Answer getAnswerFromAnswerDTO(AnswerDTO answerDTO) {
+        if (answerDTO != null) {
+            Answer answer = modelMapper.map(answerDTO, Answer.class);
             answer.setAuthor((User) userService.getUserByUsername(answerDTO.getUsername()));
-            return  answer;
+            return answer;
         }
         return null;
     }

@@ -13,8 +13,14 @@ public class RoleService {
     @Autowired
     private IRoleRepository iRoleRepository;
 
-    public List<Role> getRoles(){
+    public List<Role> getRoles() {
         return (List<Role>) iRoleRepository.findAll();
+    }
+
+    public Role addRole(String name) {
+        Role role = new Role();
+        role.setName(name);
+        return this.iRoleRepository.save(role);
     }
 
 }

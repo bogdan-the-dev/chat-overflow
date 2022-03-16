@@ -18,9 +18,8 @@ public class TagController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/all-tags")
     @ResponseBody
-    private List<Tag> getTags(){
+    private List<Tag> getTags() {
         return tagService.getTags();
     }
-
 
 }

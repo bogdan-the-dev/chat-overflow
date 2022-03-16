@@ -13,7 +13,7 @@ public class TagService {
     @Autowired
     private ITagRepository iTagRepository;
 
-    public List<Tag> getTags(){
+    public List<Tag> getTags() {
         return (List<Tag>) iTagRepository.findAll();
     }
 
@@ -25,10 +25,10 @@ public class TagService {
         }
     }
 
-    public Tag saveTag(String name){
-        if(!iTagRepository.existsTagByName(name)){
+    public Tag saveTag(String name) {
+        if (!iTagRepository.existsTagByName(name)) {
             iTagRepository.save(new Tag(name));
         }
-        return  iTagRepository.findTagByName(name).get();
+        return iTagRepository.findTagByName(name).get();
     }
 }

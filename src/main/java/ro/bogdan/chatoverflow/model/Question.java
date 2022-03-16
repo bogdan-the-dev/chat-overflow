@@ -34,7 +34,7 @@ public class Question {
         this.creationDate = creationDate;
     }
 
-    public Question(){
+    public Question() {
     }
 
     public int getQuestionId() {

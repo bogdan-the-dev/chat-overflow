@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tag_item", schema = "chatoverflow")
+@Table(name = "tag_item", schema = "chatoverflow")
 public class TagItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class TagItem {
         this.tag = tag;
     }
 
-    public TagItem(){
+    public TagItem() {
     }
 
     public TagItem(Question question, Tag tag) {

@@ -9,7 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     private int userId;
 
     @Column(name = "username")
@@ -25,7 +25,7 @@ public class User {
     private boolean accountVerified;
 
     @Column(name = "account_blocked")
-    private  boolean accountBlocked;
+    private boolean accountBlocked;
 
     @Column(name = "account_banned")
     private boolean accountBanned;
@@ -155,8 +155,6 @@ public class User {
     public void downVote(int score) {
         this.score -= score;
     }
-
-
 
 }
 
