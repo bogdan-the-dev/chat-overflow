@@ -1,0 +1,1273 @@
+{
+	"info": {
+		"_postman_id": "96a717dd-ffd7-4d41-b33a-c6107dc2af2b",
+		"name": "SD_Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/all-questions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"all-questions"
+					]
+				},
+				"description": "GET all questions test"
+			},
+			"response": [
+				{
+					"name": "GET All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/questions/all-questions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"all-questions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:27:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"questionId\": 4,\n        \"title\": \"Test question title\",\n        \"text\": \"Test question body\",\n        \"creationDate\": \"2022-03-15T09:09:47.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [],\n        \"answers\": []\n    },\n    {\n        \"questionId\": 3,\n        \"title\": \"Title 2\",\n        \"text\": \"Body 2\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [\n            \"quiz\",\n            \"utcn\",\n            \"doro\"\n        ],\n        \"answers\": []\n    },\n    {\n        \"questionId\": 1,\n        \"title\": \"text\",\n        \"text\": \"text\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [\n            \"quiz\"\n        ],\n        \"answers\": [\n            {\n                \"id\": 2,\n                \"username\": \"test\",\n                \"answerBody\": \"fgd\",\n                \"date\": \"2022-03-11T23:48:06.000+00:00\",\n                \"edited\": false,\n                \"upVotes\": 2,\n                \"downVotes\": 0,\n                \"questionId\": 1,\n                \"userScore\": 10\n            },\n            {\n                \"id\": 3,\n                \"username\": \"test\",\n                \"answerBody\": \"yes2\",\n                \"date\": \"2022-03-15T20:49:10.000+00:00\",\n                \"edited\": false,\n                \"upVotes\": 0,\n                \"downVotes\": 0,\n                \"questionId\": 1,\n                \"userScore\": 10\n            }\n        ]\n    },\n    {\n        \"questionId\": 2,\n        \"title\": \"Title 3\",\n        \"text\": \"Body for title 3\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 2,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [],\n        \"answers\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/questions/save-question",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"questionId\": 3,\r\n        \"title\": \"Title test\",\r\n        \"text\": \"Body test\",\r\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\r\n        \"upVotes\": 0,\r\n        \"downVotes\": 0,\r\n        \"username\": \"test\",\r\n        \"userScore\": 0,\r\n        \"tags\": [\r\n            \"quiz\",\r\n            \"utcn\",\r\n            \"doro\"\r\n        ],\r\n        \"answers\": []\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/questions/save-question",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"save-question"
+					]
+				},
+				"description": "edit question"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/save-question",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"questionId\": 3,\r\n        \"title\": \"Title test\",\r\n        \"text\": \"Body test\",\r\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\r\n        \"upVotes\": 0,\r\n        \"downVotes\": 0,\r\n        \"username\": \"test\",\r\n        \"userScore\": 0,\r\n        \"tags\": [\r\n            \"quiz\",\r\n            \"utcn\",\r\n            \"doro\"\r\n        ],\r\n        \"answers\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/questions/save-question",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"save-question"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:28:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionId\": 3,\n    \"title\": \"Title test\",\n    \"text\": \"Body test\",\n    \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n    \"upVotes\": 0,\n    \"downVotes\": 0,\n    \"username\": \"test\",\n    \"userScore\": 10,\n    \"tags\": [\n        \"quiz\",\n        \"utcn\",\n        \"doro\"\n    ],\n    \"answers\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/questions/search?name=tle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/search?name=tle",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "tle"
+						}
+					]
+				},
+				"description": "search by title"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/search?name=tle",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/questions/search?name=tle",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "tle"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:28:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"questionId\": 4,\n        \"title\": \"Test question title\",\n        \"text\": \"Test question body\",\n        \"creationDate\": \"2022-03-15T09:09:47.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [],\n        \"answers\": []\n    },\n    {\n        \"questionId\": 3,\n        \"title\": \"Title 2\",\n        \"text\": \"Body 2\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 0,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [\n            \"quiz\",\n            \"utcn\",\n            \"doro\"\n        ],\n        \"answers\": []\n    },\n    {\n        \"questionId\": 2,\n        \"title\": \"Title 3\",\n        \"text\": \"Body for title 3\",\n        \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n        \"upVotes\": 2,\n        \"downVotes\": 0,\n        \"username\": \"test\",\n        \"userScore\": 10,\n        \"tags\": [],\n        \"answers\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/questions/delete-question?id=82",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/delete-question?id=82",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"delete-question"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "82"
+						}
+					]
+				},
+				"description": "delete"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/delete-question?id=82",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/questions/delete-question?id=102",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"delete-question"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:28:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "The delete was successful"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/questions/create-question",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"test create\",\r\n        \"text\": \"CREATE\",\r\n        \"creationDate\": \"2022-03-15T10:39:56.000+00:00\",\r\n        \"upVotes\": 0,\r\n        \"downVotes\": 0,\r\n        \"username\": \"test\",\r\n        \"tags\": [\r\n            \"utcn\",\r\n            \"lab\"\r\n        ],\r\n        \"answers\": []\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/questions/create-question",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"create-question"
+					]
+				},
+				"description": "create"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/create-question",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"test create\",\r\n        \"text\": \"CREATE\",\r\n        \"creationDate\": \"2022-03-15T10:39:56.000+00:00\",\r\n        \"upVotes\": 0,\r\n        \"downVotes\": 0,\r\n        \"username\": \"test\",\r\n        \"tags\": [\r\n            \"utcn\",\r\n            \"lab\"\r\n        ],\r\n        \"answers\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/questions/create-question",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"create-question"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:28:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionId\": 102,\n    \"title\": \"test create\",\n    \"text\": \"CREATE\",\n    \"creationDate\": \"2022-03-15T10:39:56.000+00:00\",\n    \"upVotes\": 0,\n    \"downVotes\": 0,\n    \"username\": \"test\",\n    \"userScore\": 10,\n    \"tags\": [\n        \"utcn\",\n        \"lab\"\n    ],\n    \"answers\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/questions/find-question?id=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions/find-question?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"find-question"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				},
+				"description": "get by id"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/questions/find-question?id=2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/questions/find-question?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"questions",
+								"find-question"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:29:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionId\": 2,\n    \"title\": \"Title 3\",\n    \"text\": \"Body for title 3\",\n    \"creationDate\": \"2022-02-28T21:36:56.000+00:00\",\n    \"upVotes\": 2,\n    \"downVotes\": 0,\n    \"username\": \"test\",\n    \"userScore\": 10,\n    \"tags\": [],\n    \"answers\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/all-users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/all-users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"all-users"
+					]
+				},
+				"description": "get all users"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/all-users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/all-users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"all-users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:29:21 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"userId\": 87,\n        \"username\": \"test account\",\n        \"email\": \"test2@gmail.com\",\n        \"passwordHash\": \"sdoif;souio\",\n        \"accountVerified\": true,\n        \"accountBlocked\": false,\n        \"accountBanned\": false,\n        \"twoFA\": false,\n        \"score\": 0,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"moderator\"\n        }\n    },\n    {\n        \"userId\": 88,\n        \"username\": \"test account 1\",\n        \"email\": \"test3@gmail.com\",\n        \"passwordHash\": \"sdoif;souio\",\n        \"accountVerified\": false,\n        \"accountBlocked\": true,\n        \"accountBanned\": false,\n        \"twoFA\": false,\n        \"score\": 0,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"moderator\"\n        }\n    },\n    {\n        \"userId\": 1,\n        \"username\": \"test\",\n        \"email\": \"test@gmail.com\",\n        \"passwordHash\": \"gkf'sdoif;souio\",\n        \"accountVerified\": false,\n        \"accountBlocked\": false,\n        \"accountBanned\": false,\n        \"twoFA\": false,\n        \"score\": 10,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"moderator\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/search?name=test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/search?name=test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "test"
+						}
+					]
+				},
+				"description": "get user by username"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/search?name=test",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/search?name=test",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:29:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"username\": \"test\",\n    \"email\": \"test@gmail.com\",\n    \"passwordHash\": \"gkf'sdoif;souio\",\n    \"accountVerified\": false,\n    \"accountBlocked\": false,\n    \"accountBanned\": false,\n    \"twoFA\": false,\n    \"score\": 10,\n    \"role\": {\n        \"id\": 2,\n        \"name\": \"moderator\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/find-user?id=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/find-user?id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"find-user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "get user by id"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/find-user?id=1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/find-user?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"find-user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:29:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"username\": \"test\",\n    \"email\": \"test@gmail.com\",\n    \"passwordHash\": \"gkf'sdoif;souio\",\n    \"accountVerified\": false,\n    \"accountBlocked\": false,\n    \"accountBanned\": false,\n    \"twoFA\": false,\n    \"score\": 10,\n    \"role\": {\n        \"id\": 2,\n        \"name\": \"moderator\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/create-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test account\",\r\n    \"email\": \"test2@gmail.com\",\r\n    \"passwordHash\": \"sdoif;souio\",\r\n    \"accountVerified\": false,\r\n    \"accountBlocked\": false,\r\n    \"accountBanned\": false,\r\n    \"twoFA\": false,\r\n    \"score\": 0,\r\n    \"role\": {\r\n        \"id\": 2,\r\n        \"name\": \"moderator\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/create-user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"create-user"
+					]
+				},
+				"description": "Create user"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/create-user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test2 account\",\r\n    \"email\": \"test23@gmail.com\",\r\n    \"passwordHash\": \"sdoif;souio\",\r\n    \"accountVerified\": false,\r\n    \"accountBlocked\": true,\r\n    \"accountBanned\": false,\r\n    \"twoFA\": false,\r\n    \"score\": 0,\r\n    \"role\": {\r\n        \"id\": 2,\r\n        \"name\": \"moderator\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/create-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"create-user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:30:28 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 107,\n    \"username\": \"test2 account\",\n    \"email\": \"test23@gmail.com\",\n    \"passwordHash\": \"sdoif;souio\",\n    \"accountVerified\": false,\n    \"accountBlocked\": true,\n    \"accountBanned\": false,\n    \"twoFA\": false,\n    \"score\": 0,\n    \"role\": {\n        \"id\": 2,\n        \"name\": \"moderator\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/delete-user?id=86",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/delete-user?id=86",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"delete-user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "86"
+						}
+					]
+				},
+				"description": "delete user"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/delete-user?id=86",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/delete-user?id=107",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete-user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "107"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:31:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Delete successful"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/users/edit-user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 87,\r\n    \"username\": \"test account\",\r\n    \"email\": \"test2@gmail.com\",\r\n    \"passwordHash\": \"sdoif;souio\",\r\n    \"accountVerified\": true,\r\n    \"accountBlocked\": false,\r\n    \"accountBanned\": false,\r\n    \"twoFA\": false,\r\n    \"score\": 0,\r\n    \"role\": {\r\n        \"id\": 2,\r\n        \"name\": \"moderator\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/edit-user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"edit-user"
+					]
+				},
+				"description": "user edit"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/users/edit-user",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 87,\r\n    \"username\": \"test account\",\r\n    \"email\": \"test2@gmail.com\",\r\n    \"passwordHash\": \"sdoif;souio\",\r\n    \"accountVerified\": true,\r\n    \"accountBlocked\": false,\r\n    \"accountBanned\": false,\r\n    \"twoFA\": false,\r\n    \"score\": 0,\r\n    \"role\": {\r\n        \"id\": 2,\r\n        \"name\": \"moderator\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/edit-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"edit-user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:31:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 87,\n    \"username\": \"test account\",\n    \"email\": \"test2@gmail.com\",\n    \"passwordHash\": \"sdoif;souio\",\n    \"accountVerified\": true,\n    \"accountBlocked\": false,\n    \"accountBanned\": false,\n    \"twoFA\": false,\n    \"score\": 0,\n    \"role\": {\n        \"id\": 2,\n        \"name\": \"moderator\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/answers/find-answer?id=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/answers/find-answer?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"answers",
+						"find-answer"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				},
+				"description": "get answer by id"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/answers/find-answer?id=2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/answers/find-answer?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"answers",
+								"find-answer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:33:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"username\": \"test\",\n    \"answerBody\": \"fgd\",\n    \"date\": \"2022-03-11T23:48:06.000+00:00\",\n    \"edited\": false,\n    \"upVotes\": 2,\n    \"downVotes\": 0,\n    \"questionId\": 1,\n    \"userScore\": 10\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/answers/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test\",\r\n    \"answerBody\": \"fgd\",\r\n    \"date\": \"2022-03-15T23:48:06.000+00:00\",\r\n    \"edited\": false,\r\n    \"upVotes\": 0,\r\n    \"downVotes\": 0,\r\n    \"questionId\": 1,\r\n    \"userScore\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/answers/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"answers",
+						"create"
+					]
+				},
+				"description": "create answer\r\n"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/answers/create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"answerBody\": \"fgd\",\r\n    \"date\": \"2022-03-15T23:48:06.000+00:00\",\r\n    \"edited\": false,\r\n    \"upVotes\": 0,\r\n    \"downVotes\": 0,\r\n    \"questionId\": 1,\r\n    \"userScore\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/answers/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"answers",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:34:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 108,\n    \"username\": \"test\",\n    \"answerBody\": \"fgd\",\n    \"date\": \"2022-03-15T23:48:06.000+00:00\",\n    \"edited\": false,\n    \"upVotes\": 0,\n    \"downVotes\": 0,\n    \"questionId\": 1,\n    \"userScore\": 10\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/answers/edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 108,\r\n    \"username\": \"test\",\r\n    \"answerBody\": \"fgdasd\",\r\n    \"date\": \"2022-03-15T23:48:06.000+00:00\",\r\n    \"edited\": false,\r\n    \"upVotes\": 0,\r\n    \"downVotes\": 0,\r\n    \"questionId\": 1,\r\n    \"userScore\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/answers/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"answers",
+						"edit"
+					]
+				},
+				"description": "edit answer"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/answers/edit",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 108,\r\n    \"username\": \"test\",\r\n    \"answerBody\": \"fgdasd\",\r\n    \"date\": \"2022-03-15T23:48:06.000+00:00\",\r\n    \"edited\": false,\r\n    \"upVotes\": 0,\r\n    \"downVotes\": 0,\r\n    \"questionId\": 1,\r\n    \"userScore\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/answers/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"answers",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:40:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 108,\n    \"username\": \"test\",\n    \"answerBody\": \"fgdasd\",\n    \"date\": \"2022-03-15T21:48:06.000+00:00\",\n    \"edited\": true,\n    \"upVotes\": 0,\n    \"downVotes\": 0,\n    \"questionId\": 1,\n    \"userScore\": 10\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/answers/delete?id=109",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/answers/delete?id=109",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"answers",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "109"
+						}
+					]
+				},
+				"description": "delete answer"
+			},
+			"response": [
+				{
+					"name": "localhost:8080/answers/delete?id=109",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/answers/delete?id=109",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"answers",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "109"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "14"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 10:51:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Answer deleted"
+				}
+			]
+		}
+	]
+}

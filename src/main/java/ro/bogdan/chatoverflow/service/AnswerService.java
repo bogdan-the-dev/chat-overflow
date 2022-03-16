@@ -67,10 +67,18 @@ public class AnswerService {
 
     public void deleteAnswer(int id) throws Exception{
         try {
-            iAnswerRepository.delete(this.getAnswerById(id));
+            Answer answer = getAnswerById(id);
+            answer.setAuthor(null);
+            //saveAnswer(answer);
+            this.iAnswerRepository.delete(answer);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("Delete failed, answer not found");
         }
+    }
+
+    public Answer saveAnswer(Answer answer) {
+        return this.iAnswerRepository.save(answer);
     }
 
     private AnswerDTO convertToAnswerDTO(Answer answer){
