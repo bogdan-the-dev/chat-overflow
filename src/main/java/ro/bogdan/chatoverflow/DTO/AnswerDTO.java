@@ -2,7 +2,7 @@ package ro.bogdan.chatoverflow.DTO;
 
 import java.util.Calendar;
 
-public class AnswerDTO {
+public class AnswerDTO implements Comparable<AnswerDTO>{
 
     private int id;
 
@@ -19,6 +19,8 @@ public class AnswerDTO {
     private int downVotes;
 
     private int questionId;
+
+    private int userScore;
 
     public AnswerDTO(int id, String answerBody, Calendar date, boolean edited, int upVotes, int downVotes, int questionId) {
         this.id = id;
@@ -95,5 +97,23 @@ public class AnswerDTO {
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
+    }
+
+    public int getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(int userScore) {
+        this.userScore = userScore;
+    }
+
+    @Override
+    public int compareTo(AnswerDTO o) {
+        int currentSum = this.upVotes - this.downVotes;
+        int otherSum = o.upVotes - this.downVotes;
+        if(currentSum - otherSum > 0)
+            return 1;
+        else
+            return 0;
     }
 }

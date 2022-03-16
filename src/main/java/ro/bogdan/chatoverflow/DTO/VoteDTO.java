@@ -2,31 +2,21 @@ package ro.bogdan.chatoverflow.DTO;
 
 public class VoteDTO {
 
-    private int id;
 
     private String username;
 
     private int score;
 
-    private int question_id;
+    private Integer questionId;
 
-    private int answer_id;
+    private Integer answerId;
 
-    public VoteDTO(int id, String username, int score) {
-        this.id = id;
+    public VoteDTO(String username, int score) {
         this.username = username;
         this.score = score;
     }
 
     public VoteDTO() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -45,19 +35,19 @@ public class VoteDTO {
         this.score = score;
     }
 
-    public int getQuestion_id() {
-        return question_id;
+    public Integer getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
 
-    public int getAnswer_id() {
-        return answer_id;
+    public Integer getAnswerId() {
+        return answerId;
     }
 
-    public void setAnswer_id(int answer_id) {
-        this.answer_id = answer_id;
+    public void setAnswerId(Integer answerId) {
+        this.answerId = answerId;
     }
 }

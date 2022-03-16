@@ -11,11 +11,12 @@ import ro.bogdan.chatoverflow.service.RoleService;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/roles")
 public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/roles")
+    @RequestMapping(method = RequestMethod.GET, value = "/all")
     @ResponseBody
     private List<Role> getRoles(){
         return roleService.getRoles();

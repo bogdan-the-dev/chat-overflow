@@ -26,20 +26,12 @@ public class Question {
     @Column(name = "creation_date")
     private Calendar creationDate;
 
-    @Column(name = "up_votes")
-    private int upVotes;
-
-    @Column(name = "down_votes")
-    private int downVotes;
-
-    public Question(int questionId, String title, User author, String text, Calendar creationDate, int upVotes, int downVotes) {
+    public Question(int questionId, String title, User author, String text, Calendar creationDate) {
         this.questionId = questionId;
         this.title = title;
         this.author = author;
         this.text = text;
         this.creationDate = creationDate;
-        this.upVotes = upVotes;
-        this.downVotes = downVotes;
     }
 
     public Question(){
@@ -83,22 +75,6 @@ public class Question {
 
     public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public int getUpVotes() {
-        return upVotes;
-    }
-
-    public void setUpVotes(int upVotes) {
-        this.upVotes = upVotes;
-    }
-
-    public int getDownVotes() {
-        return downVotes;
-    }
-
-    public void setDownVotes(int downVotes) {
-        this.downVotes = downVotes;
     }
 
 }

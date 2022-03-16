@@ -44,8 +44,8 @@ public class TagItemService {
 
     public void updateTagItems(List<String> newTags, Question question) {
         List<String> currentTags = getTagsForQuestion(question.getQuestionId());
-        ArrayList<String> createTags = (ArrayList<String>) newTags.stream().filter(element -> !currentTags.contains(element)).toList();
-        ArrayList<String> tagsForDeletion = (ArrayList<String>)currentTags.stream().filter(element -> !newTags.contains(element)).toList();
+        ArrayList<String> createTags = (ArrayList<String>) newTags.stream().filter(element -> !currentTags.contains(element)).collect(Collectors.toList());
+        ArrayList<String> tagsForDeletion = (ArrayList<String>)currentTags.stream().filter(element -> !newTags.contains(element)).collect(Collectors.toList());
         createAndSaveTagItems(createTags, question);
         for(String tag: tagsForDeletion) {
             deleteTagItem(question.getQuestionId(), tag);

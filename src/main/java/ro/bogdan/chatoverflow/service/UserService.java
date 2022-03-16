@@ -17,8 +17,8 @@ public class UserService {
         return (List<User>) iUserRepository.findAll() ;
     }
 
-    public List<User> getUserByUsername(String username){
-        return (List<User>) iUserRepository.findUserByUsernameContainingIgnoreCase(username);
+    public User getUserByUsername(String username){
+        return iUserRepository.findUserByUsernameIs(username).orElse(null);
     }
 
     public User getUserById(Integer id) {
@@ -31,6 +31,15 @@ public class UserService {
         } catch (Exception e){
             throw new Exception("Delete failed, user not found");
         }
+    }
+
+    public User editUser(User user) {
+        User editedUser = this.iUserRepository.getById(user.getUserId());
+        editedUser.setTwoFA(user.isTwoFA());
+        editedUser.setAccountBlocked(user.isAccountBlocked());
+        editedUser.setAccountBanned(user.isAccountBanned());
+        editedUser.setAccountVerified(user.isAccountVerified());
+        return this.iUserRepository.save(editedUser);
     }
 
     public User saveUser(User user) {

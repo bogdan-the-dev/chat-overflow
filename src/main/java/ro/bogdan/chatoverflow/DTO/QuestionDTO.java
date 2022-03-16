@@ -22,6 +22,8 @@ public class QuestionDTO implements Comparable<QuestionDTO> {
 
     private String username;
 
+    private int userScore;
+
     private List<String> tags;
 
     private List<AnswerDTO> answers;
@@ -118,6 +120,14 @@ public class QuestionDTO implements Comparable<QuestionDTO> {
 
     public List<AnswerDTO> getAnswers() {
         return answers;
+    }
+
+    public int getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(int userScore) {
+        this.userScore = userScore;
     }
 
     @Override

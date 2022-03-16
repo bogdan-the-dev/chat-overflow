@@ -37,6 +37,13 @@ public class Vote {
     public Vote() {
     }
 
+    public Vote(User user, int score, Question question, Answer answer) {
+        this.user = user;
+        this.score = score;
+        this.question = question;
+        this.answer = answer;
+    }
+
     public int getId() {
         return id;
     }
