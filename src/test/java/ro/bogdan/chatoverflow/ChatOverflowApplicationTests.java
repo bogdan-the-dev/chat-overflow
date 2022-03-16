@@ -53,8 +53,8 @@ class ChatOverflowApplicationTests {
         userService.saveUser(user1);
         assert userService.getUserById(userId).isAccountVerified();
         assert userService.getUserById(userId).getScore() == 100;
-        if(userCreated) {
-            try{
+        if (userCreated) {
+            try {
                 userService.deleteUser(userId);
             } catch (Exception e) {
                 assert false;
@@ -68,7 +68,7 @@ class ChatOverflowApplicationTests {
         try {
             userService.deleteUser(user.getUserId());
         } catch (Exception e) {
-            assert  false;
+            assert false;
         }
     }
 }
