@@ -40,6 +40,18 @@ public class User {
     @JoinColumn(name = "user_role_id", referencedColumnName = "role_id")
     private Role role;
 
+    public User(String username, String email, String passwordHash, boolean accountVerified, boolean accountBlocked, boolean accountBanned, boolean twoFA, int score, Role role) {
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.accountVerified = accountVerified;
+        this.accountBlocked = accountBlocked;
+        this.accountBanned = accountBanned;
+        this.twoFA = twoFA;
+        this.score = score;
+        this.role = role;
+    }
+
     public User(int userId, String username, String email, String passwordHash, boolean accountVerified, boolean accountBlocked, boolean accountBanned, boolean twoFA, int score, Role role) {
         this.userId = userId;
         this.username = username;
@@ -135,5 +147,16 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public void upVote(int score) {
+        this.score += score;
+    }
+
+    public void downVote(int score) {
+        this.score -= score;
+    }
+
+
+
 }
 

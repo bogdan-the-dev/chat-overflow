@@ -9,7 +9,7 @@ import ro.bogdan.chatoverflow.service.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -23,8 +23,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    private List<User> findUsers(@RequestParam(name = "name") String name){
-        return null;
+    private User findUser(@RequestParam(name = "name") String name){
+        return userService.getUserByUsername(name);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/find-user")
@@ -48,6 +48,12 @@ public class UserController {
     @ResponseBody
     private User createUser(@RequestBody User user) {
         return userService.saveUser(user);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/edit-user")
+    @ResponseBody
+    private User editUser(@RequestBody User user) {
+        return userService.editUser(user);
     }
 
 }

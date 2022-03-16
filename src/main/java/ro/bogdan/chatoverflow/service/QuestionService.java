@@ -26,6 +26,8 @@ public class QuestionService {
     private AnswerService answerService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private VoteService voteService;
 
     public List<QuestionDTO> getQuestions(){
         List<Question> questions = (List<Question>) iQuestionRepository.findAllByOrderByCreationDateDesc();
@@ -34,6 +36,10 @@ public class QuestionService {
             questionDTOS.add(covertToDTO(question));
         }
         return questionDTOS;
+    }
+
+    public Question getQuestionById(int question_id) {
+        return this.iQuestionRepository.findById(question_id).orElse(null);
     }
 
     public List<QuestionDTO> getQuestionsByName(String name){
@@ -56,7 +62,7 @@ public class QuestionService {
 
     public void deleteQuestion(Integer id) throws Exception {
         try {
-            tagItemService.deleteAllTagsFromQuestion(id);
+           // tagItemService.deleteAllTagsFromQuestion(id);
             iQuestionRepository.delete(this.getQuestionById(id));
         }catch (Exception e){
             e.printStackTrace();
@@ -95,8 +101,11 @@ public class QuestionService {
         if (question != null){
             QuestionDTO questionDTO = modelMapper.map(question, QuestionDTO.class);
             modelMapper.map(question.getAuthor(), questionDTO);
+            questionDTO.setUserScore(question.getAuthor().getScore());
             questionDTO.setTags(tagItemService.getTagsForQuestion(question.getQuestionId()));
             questionDTO.setAnswers(answerService.getAnswersByQuestionId(question.getQuestionId()));
+            questionDTO.setUpVotes(voteService.getUpVoteForQuestion(question.getQuestionId()));
+            questionDTO.setDownVotes(voteService.getDownVoteForQuestion(question.getQuestionId()));
             return questionDTO;
         }
        return null;
@@ -105,7 +114,7 @@ public class QuestionService {
     private Question getQuestionFromDTO(QuestionDTO questionDTO){
         if(questionDTO != null){
             Question question = modelMapper.map(questionDTO, Question.class);
-            question.setAuthor(userService.getUserByUsername(questionDTO.getUsername()).get(0));
+            question.setAuthor(userService.getUserByUsername(questionDTO.getUsername()));
             return question;
         }
         return null;

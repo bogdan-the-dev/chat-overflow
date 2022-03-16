@@ -10,6 +10,7 @@ import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IAnswerRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,6 +20,13 @@ public class AnswerService {
     private IAnswerRepository iAnswerRepository;
     @Autowired
     private UserService userService;
+
+    private VoteService voteService;
+
+    @Autowired
+    public void setVoteService(VoteService voteService) {
+        this.voteService = voteService;
+    }
 
     private final ModelMapper modelMapper = new ModelMapper();
 
@@ -32,6 +40,7 @@ public class AnswerService {
         for(Answer answer: answers){
             answerDTOS.add(convertToAnswerDTO(answer));
         }
+        Collections.sort(answerDTOS);
         return answerDTOS;
     }
 
@@ -68,6 +77,9 @@ public class AnswerService {
         if(answer != null){
             AnswerDTO answerDTO = modelMapper.map(answer, AnswerDTO.class);
             answerDTO.setUsername(answer.getAuthor().getUsername());
+            answerDTO.setUserScore(answer.getAuthor().getScore());
+            answerDTO.setUpVotes(voteService.getUpVoteForAnswer(answer.getId()));
+            answerDTO.setDownVotes(voteService.getDownVoteForAnswer(answer.getId()));
             return  answerDTO;
         }
         return null;
@@ -85,4 +97,5 @@ public class AnswerService {
         }
         return null;
     }
+
 }

@@ -29,20 +29,12 @@ public class Answer {
     @Column(name = "edited")
     private boolean edited;
 
-    @Column(name = "up_votes")
-    private int upVotes;
-
-    @Column(name = "down_votes")
-    private int downVotes;
-
-    public Answer(int id, User author, String answerBody, Calendar date, boolean edited, int upVotes, int downVotes, int questionId) {
+    public Answer(int id, User author, String answerBody, Calendar date, boolean edited, int questionId) {
         this.id = id;
         this.author = author;
         this.answerBody = answerBody;
         this.date = date;
         this.edited = edited;
-        this.upVotes = upVotes;
-        this.downVotes = downVotes;
         this.questionId = questionId;
     }
 
@@ -87,22 +79,6 @@ public class Answer {
 
     public void setEdited(boolean edited) {
         this.edited = edited;
-    }
-
-    public int getUpVotes() {
-        return upVotes;
-    }
-
-    public void setUpVotes(int upVotes) {
-        this.upVotes = upVotes;
-    }
-
-    public int getDownVotes() {
-        return downVotes;
-    }
-
-    public void setDownVotes(int downVotes) {
-        this.downVotes = downVotes;
     }
 
     public int getQuestionId() {

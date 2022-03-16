@@ -42,19 +42,10 @@ public class TagItemService {
         return questions;
     }
 
-    public void deleteAllTagsFromQuestion(int questionId) {
-        List<TagItem> items = (List<TagItem>) iTagItemRepository.findTagItemsByQuestionQuestionIdIs(questionId);
-        for (TagItem item: items) {
-            if(item != null) {
-                this.iTagItemRepository.delete(item);
-            }
-        }
-    }
-
     public void updateTagItems(List<String> newTags, Question question) {
         List<String> currentTags = getTagsForQuestion(question.getQuestionId());
-        ArrayList<String> createTags = (ArrayList<String>) newTags.stream().filter(element -> !currentTags.contains(element)).toList();
-        ArrayList<String> tagsForDeletion = (ArrayList<String>)currentTags.stream().filter(element -> !newTags.contains(element)).toList();
+        ArrayList<String> createTags = (ArrayList<String>) newTags.stream().filter(element -> !currentTags.contains(element)).collect(Collectors.toList());
+        ArrayList<String> tagsForDeletion = (ArrayList<String>)currentTags.stream().filter(element -> !newTags.contains(element)).collect(Collectors.toList());
         createAndSaveTagItems(createTags, question);
         for(String tag: tagsForDeletion) {
             deleteTagItem(question.getQuestionId(), tag);
