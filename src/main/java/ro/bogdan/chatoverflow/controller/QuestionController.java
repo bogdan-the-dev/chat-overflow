@@ -10,6 +10,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/questions")
+@CrossOrigin()
 public class QuestionController {
 
     @Autowired
@@ -62,5 +63,11 @@ public class QuestionController {
     @ResponseBody
     private List<QuestionDTO> getQuestionsByTag(@RequestParam(name = "tag") String name) {
         return questionService.getQuestionsByTag(name);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/find-by-user")
+    @ResponseBody
+    private List<QuestionDTO> getQuestionsByUser(@RequestParam(name = "username") String username) {
+        return questionService.getQuestionsByUser(username);
     }
 }

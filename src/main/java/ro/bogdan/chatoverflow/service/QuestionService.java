@@ -70,6 +70,16 @@ public class QuestionService {
         }
     }
 
+    public List<QuestionDTO> getQuestionsByUser(String username) {
+        User user = userService.getUserByUsername(username);
+        List<Question> questions = (List<Question>) iQuestionRepository.findAllByAuthorUserIdIsOrderByCreationDateDesc(user.getUserId());
+        ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
+        for(Question question: questions) {
+            questionDTOS.add(covertToDTO(question));
+        }
+        return questionDTOS;
+    }
+
     public QuestionDTO saveQuestion(QuestionDTO questionDTO) {
         Question question = iQuestionRepository.save(getQuestionFromDTO(questionDTO));
         tagItemService.createAndSaveTagItems((ArrayList<String>) questionDTO.getTags(), question);

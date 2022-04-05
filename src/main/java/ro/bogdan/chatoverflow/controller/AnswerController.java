@@ -8,6 +8,7 @@ import ro.bogdan.chatoverflow.service.AnswerService;
 
 @Controller
 @RequestMapping(value = "/answers")
+@CrossOrigin()
 public class AnswerController {
 
     @Autowired

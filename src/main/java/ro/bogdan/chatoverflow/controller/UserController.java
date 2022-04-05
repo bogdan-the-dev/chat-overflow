@@ -8,6 +8,7 @@ import ro.bogdan.chatoverflow.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin()
 @Controller
 @RequestMapping("/users")
 public class UserController {
