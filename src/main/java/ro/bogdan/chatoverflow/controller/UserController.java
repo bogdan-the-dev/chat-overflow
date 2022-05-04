@@ -45,6 +45,12 @@ public class UserController {
         return "Delete successful";
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/ban-user")
+    @ResponseBody
+    private String banUser(@RequestParam(name = "username") String username) {
+        return null;
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/create-user")
     @ResponseBody
     private User createUser(@RequestBody User user) {
