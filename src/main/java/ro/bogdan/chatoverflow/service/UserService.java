@@ -6,6 +6,7 @@ import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,6 +20,12 @@ public class UserService {
 
     public User getUserByUsername(String username) {
         return iUserRepository.findUserByUsernameIs(username).orElse(null);
+    }
+
+    public boolean userExists(String email) {
+        Optional<User> userOptional = iUserRepository.findUserByEmailIsIgnoreCase(email);
+        User user = userOptional.orElse(null);
+        return !(user == null);
     }
 
     public User getUserById(Integer id) {

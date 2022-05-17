@@ -1,4 +1,4 @@
-package ro.bogdan.chatoverflow.Configuration;
+package ro.bogdan.chatoverflow.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/moderator/**").hasRole("MODERATOR")
-                .antMatchers("/login").permitAll()
+                .anyRequest().permitAll();/*.antMatchers("/login").permitAll()
                 .antMatchers("/questions/create-question").authenticated()
                 .antMatchers("/questions/delete-question").authenticated()
                 .antMatchers("/answers/edit").authenticated()
@@ -30,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/ban-user").hasRole("MODERATOR")
                 .antMatchers("/users/deleteUser").hasRole("USER")
                 .antMatchers("/users/editUser").authenticated()
-                .anyRequest().permitAll();
 
+                 */
     }
 
     @Bean

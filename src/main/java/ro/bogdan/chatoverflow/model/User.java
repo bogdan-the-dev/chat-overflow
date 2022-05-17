@@ -52,6 +52,18 @@ public class User {
         this.role = role;
     }
 
+    public User(String username, String email, String passwordHash, Role role) {
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.accountVerified = false;
+        this.accountBlocked = false;
+        this.accountBanned = false;
+        this.twoFA = false;
+        this.score = 0;
+        this.role = role;
+    }
+
     public User(int userId, String username, String email, String passwordHash, boolean accountVerified, boolean accountBlocked, boolean accountBanned, boolean twoFA, int score, Role role) {
         this.userId = userId;
         this.username = username;

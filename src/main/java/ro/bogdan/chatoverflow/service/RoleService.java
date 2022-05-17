@@ -23,4 +23,7 @@ public class RoleService {
         return this.iRoleRepository.save(role);
     }
 
+    public Role getRole(String roleName) {
+        return this.iRoleRepository.findRoleByNameIs(roleName).orElse(null);
+    }
 }
