@@ -8,6 +8,7 @@ import ro.bogdan.chatoverflow.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin()
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -42,6 +43,17 @@ public class UserController {
             return e.getMessage();
         }
         return "Delete successful";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/ban-user")
+    @ResponseBody
+    private String banUser(@RequestParam(name = "username") String username) {
+        if(this.userService.banUser(username)) {
+            System.out.println("USer \"" + username + "\" has been banned");
+            return "User banned";
+        }
+        else
+            return "Something went wrong";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create-user")

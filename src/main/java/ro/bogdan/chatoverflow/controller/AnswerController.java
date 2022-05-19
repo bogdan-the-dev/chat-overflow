@@ -8,6 +8,7 @@ import ro.bogdan.chatoverflow.service.AnswerService;
 
 @Controller
 @RequestMapping(value = "/answers")
+@CrossOrigin()
 public class AnswerController {
 
     @Autowired
@@ -31,7 +32,7 @@ public class AnswerController {
         return answerService.updateAnswer(answerDTO);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "delete")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
     @ResponseBody
     private String deleteAnswer(@RequestParam("id") int id) {
         try {

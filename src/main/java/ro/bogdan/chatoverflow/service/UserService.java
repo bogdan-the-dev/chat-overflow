@@ -6,12 +6,15 @@ import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
     @Autowired
     private IUserRepository iUserRepository;
+    @Autowired
+    private EmailServiceImpl emailService;
 
     public List<User> getUsers() {
         return (List<User>) iUserRepository.findAll();
@@ -19,6 +22,12 @@ public class UserService {
 
     public User getUserByUsername(String username) {
         return iUserRepository.findUserByUsernameIs(username).orElse(null);
+    }
+
+    public boolean userExists(String email) {
+        Optional<User> userOptional = iUserRepository.findUserByEmailIsIgnoreCase(email);
+        User user = userOptional.orElse(null);
+        return !(user == null);
     }
 
     public User getUserById(Integer id) {
@@ -40,6 +49,14 @@ public class UserService {
         editedUser.setAccountBanned(user.isAccountBanned());
         editedUser.setAccountVerified(user.isAccountVerified());
         return this.iUserRepository.save(editedUser);
+    }
+
+    public boolean banUser(String username) {
+        User user = getUserByUsername(username);
+        this.emailService.sendEmail(user.getEmail(), "ChatOverflow Ban", "You have been banned! It is what it is.");
+        user.setAccountBanned(true);
+        this.saveUser(user);
+        return getUserByUsername(username).isAccountBanned();
     }
 
     public User saveUser(User user) {

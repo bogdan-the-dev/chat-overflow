@@ -8,10 +8,7 @@ import ro.bogdan.chatoverflow.model.Question;
 import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IQuestionRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class QuestionService {
@@ -70,10 +67,24 @@ public class QuestionService {
         }
     }
 
+    public List<QuestionDTO> getQuestionsByUser(String username) {
+        User user = userService.getUserByUsername(username);
+        List<Question> questions = (List<Question>) iQuestionRepository.findAllByAuthorUserIdIsOrderByCreationDateDesc(user.getUserId());
+        ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
+        for(Question question: questions) {
+            questionDTOS.add(covertToDTO(question));
+        }
+        return questionDTOS;
+    }
+
     public QuestionDTO saveQuestion(QuestionDTO questionDTO) {
         Question question = iQuestionRepository.save(getQuestionFromDTO(questionDTO));
         tagItemService.createAndSaveTagItems((ArrayList<String>) questionDTO.getTags(), question);
         return covertToDTO(question);
+    }
+
+    public void saveQuestion(Question question) {
+        this.iQuestionRepository.save(question);
     }
 
     public List<QuestionDTO> getQuestionsByTag(String tag) {
@@ -94,6 +105,7 @@ public class QuestionService {
             initialQuestion.setTitle(questionDTO.getTitle());
         }
         tagItemService.updateTagItems(questionDTO.getTags(), questionFromDTO);
+        this.saveQuestion(initialQuestion);
         return covertToDTO(iQuestionRepository.findById(questionDTO.getQuestionId()).get());
     }
 

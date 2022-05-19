@@ -16,6 +16,13 @@ public class VoteDTO {
         this.score = score;
     }
 
+    public VoteDTO(String username, int score, Integer questionId, Integer answerId) {
+        this.username = username;
+        this.score = score;
+        this.questionId = questionId;
+        this.answerId = answerId;
+    }
+
     public VoteDTO() {
     }
 

@@ -30,6 +30,16 @@ public class VoteService {
         this.questionService = questionService;
     }
 
+    public VoteDTO getVote(VoteDTO voteDTO) {
+        int userId = this.userService.getUserByUsername(voteDTO.getUsername()).getUserId();
+        Vote voteFound;
+        if(voteDTO.getAnswerId() == null) {
+            voteFound = this.iVoteRepository.getVoteByQuestionQuestionIdAndUserUserId(voteDTO.getQuestionId(), userId).orElse(null);
+        } else {
+            voteFound = this.iVoteRepository.getVoteByAnswerIdAndUserUserId(voteDTO.getAnswerId(), userId).orElse(null);
+        }
+        return convertToDTO(voteFound);
+    }
 
     private static final ModelMapper modelMapper = new ModelMapper();
 
@@ -64,7 +74,7 @@ public class VoteService {
         if (voteDTO.getQuestionId() != null) {
             Question question = vote.getQuestion();
             if (hasUserAlreadyVotedQuestion(question.getQuestionId(), user.getUserId())) {
-                Vote changeVote = this.iVoteRepository.getVoteByQuestionQuestionIdAndUserUserId(vote.getQuestion().getQuestionId(), user.getUserId()).get();
+                Vote changeVote = this.iVoteRepository.getVoteByQuestionQuestionIdAndUserUserId(question.getQuestionId(), user.getUserId()).get();
                 if (changeVote.getScore() != vote.getScore())
                     changeQuestionVote(changeVote, voteDTO.getScore());
             }
@@ -104,9 +114,9 @@ public class VoteService {
 
     private void deleteAnswerVote(Vote vote, String votingUsername) {
         int score = vote.getScore();
-        User votedUser = this.userService.getUserById(vote.getQuestion().getAuthor().getUserId());
+        User votedUser = this.userService.getUserById(vote.getAnswer().getAuthor().getUserId());
         if (score == 1) {
-            votedUser.downVote(5);
+            votedUser.downVote(10);
         } else if (score == -1) {
             User votingUser = this.userService.getUserByUsername(votingUsername);
             votingUser.upVote(1);
@@ -129,7 +139,7 @@ public class VoteService {
         User votedUser = this.userService.getUserById(vote.getAnswer().getAuthor().getUserId());
         User votingUser = this.userService.getUserByUsername(votingUsername);
         votedUser.downVote(2);
-        votingUser.downVote(-1);
+        votingUser.downVote(1);
         this.userService.saveUser(votedUser);
         this.userService.saveUser(votingUser);
     }
@@ -138,14 +148,15 @@ public class VoteService {
         newVote.setScore(newScore);
         this.iVoteRepository.save(newVote);
         User votedUser = this.userService.getUserById(newVote.getAnswer().getAuthor().getUserId());
+        User votingUser = this.userService.getUserByUsername(votingUsername);
         if (newScore == 1) {
             votedUser.upVote(12);
-            User votingUser = this.userService.getUserByUsername(votingUsername);
             votingUser.upVote(2);
             this.userService.saveUser(votingUser);
         }
         if (newScore == -1) {
             votedUser.downVote(12);
+            votingUser.downVote(1);
         }
         this.userService.saveUser(votedUser);
     }
@@ -153,7 +164,7 @@ public class VoteService {
     private void changeQuestionVote(Vote newVote, int newScore) {
         newVote.setScore(newScore);
         this.iVoteRepository.save(newVote);
-        User votedUser = this.userService.getUserById(newVote.getAnswer().getAuthor().getUserId());
+        User votedUser = this.userService.getUserById(newVote.getQuestion().getAuthor().getUserId());
         if (newScore == 1) {
             votedUser.upVote(7);
         }
@@ -188,34 +199,46 @@ public class VoteService {
     }
 
     public int getUpVoteForAnswer(int answerId) {
-        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer().getId() == answerId && v.getScore() == 1).toList().size();
+        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer() != null && v.getAnswer().getId() == answerId && v.getScore() == 1).toList().size();
     }
 
     public int getDownVoteForAnswer(int answerId) {
-        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer().getId() == answerId && v.getScore() == -1).toList().size();
+        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer() != null && v.getAnswer().getId() == answerId && v.getScore() == -1).toList().size();
     }
 
     public int getUpVoteForQuestion(int questionId) {
-        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer().getId() == questionId && v.getScore() == 1).toList().size();
+        return this.iVoteRepository.findAll().stream().filter(v -> v.getQuestion() != null && v.getQuestion().getQuestionId() == questionId && v.getScore() == 1).toList().size();
     }
 
     public int getDownVoteForQuestion(int questionId) {
-        return this.iVoteRepository.findAll().stream().filter(v -> v.getAnswer().getId() == questionId && v.getScore() == -1).toList().size();
+        return this.iVoteRepository.findAll().stream().filter(v -> v.getQuestion() != null && v.getQuestion().getQuestionId() == questionId && v.getScore() == -1).toList().size();
     }
 
     private VoteDTO convertToDTO(Vote vote) {
-        VoteDTO voteDTO = modelMapper.map(vote, VoteDTO.class);
-        voteDTO.setUsername(vote.getUser().getUsername());
-        voteDTO.setQuestionId(vote.getQuestion().getQuestionId());
-        voteDTO.setAnswerId((vote.getAnswer().getId()));
-        return voteDTO;
+        if (vote != null) {
+            VoteDTO voteDTO = new VoteDTO(vote.getUser().getUsername(), vote.getScore());
+            if(vote.getQuestion() != null) {
+                voteDTO.setQuestionId(vote.getQuestion().getQuestionId());
+                voteDTO.setAnswerId(null);
+            } else {
+                voteDTO.setQuestionId(null);
+                voteDTO.setAnswerId((vote.getAnswer().getId()));
+            }
+            return voteDTO;
+        }
+        VoteDTO v = new VoteDTO();
+        v.setScore(0);
+        return v;
     }
 
     private Vote convertFromDTO(VoteDTO voteDTO) {
-        Vote vote = modelMapper.map(voteDTO, Vote.class);
+        Vote vote = new Vote();//modelMapper.map(voteDTO, Vote.class);
+        vote.setScore(voteDTO.getScore());
         vote.setUser((User) this.userService.getUserByUsername(voteDTO.getUsername()));
-        vote.setQuestion(questionService.getQuestionById(voteDTO.getQuestionId()));
-        vote.setAnswer(answerService.getAnswerById(voteDTO.getAnswerId()));
+        if(voteDTO.getQuestionId() != null)
+            vote.setQuestion(questionService.getQuestionById(voteDTO.getQuestionId()));
+        else
+            vote.setAnswer(answerService.getAnswerById(voteDTO.getAnswerId()));
         return vote;
     }
 }

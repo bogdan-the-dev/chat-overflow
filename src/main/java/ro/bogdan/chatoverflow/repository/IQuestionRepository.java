@@ -19,4 +19,5 @@ public interface IQuestionRepository extends JpaRepository<Question, Integer> {
 
     Iterable<Question> findAllByOrderByCreationDateDesc();
 
+    Iterable<Question> findAllByAuthorUserIdIsOrderByCreationDateDesc(int userId);
 }
