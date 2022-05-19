@@ -42,7 +42,8 @@ public class QuestionController {
 
         } catch (Exception e) {
 
-            return e.getMessage();
+            System.out.println(e.getMessage());
+            return "Something went wrong";
         }
         return "The delete was successful";
     }

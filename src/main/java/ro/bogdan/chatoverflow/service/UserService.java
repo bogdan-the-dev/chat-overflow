@@ -13,6 +13,8 @@ public class UserService {
 
     @Autowired
     private IUserRepository iUserRepository;
+    @Autowired
+    private EmailServiceImpl emailService;
 
     public List<User> getUsers() {
         return (List<User>) iUserRepository.findAll();
@@ -47,6 +49,14 @@ public class UserService {
         editedUser.setAccountBanned(user.isAccountBanned());
         editedUser.setAccountVerified(user.isAccountVerified());
         return this.iUserRepository.save(editedUser);
+    }
+
+    public boolean banUser(String username) {
+        User user = getUserByUsername(username);
+        this.emailService.sendEmail(user.getEmail(), "ChatOverflow Ban", "You have been banned! It is what it is.");
+        user.setAccountBanned(true);
+        this.saveUser(user);
+        return getUserByUsername(username).isAccountBanned();
     }
 
     public User saveUser(User user) {

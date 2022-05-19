@@ -5,17 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ro.bogdan.chatoverflow.DTO.AuthenticationDTO;
 import ro.bogdan.chatoverflow.DTO.LoginDTO;
-import ro.bogdan.chatoverflow.DTO.UserDTO;
+import ro.bogdan.chatoverflow.DTO.RegisterDTO;
 import ro.bogdan.chatoverflow.exception.InvalidLoginException;
+import ro.bogdan.chatoverflow.exception.UserIsBannedException;
 import ro.bogdan.chatoverflow.exception.ValidateUserException;
 import ro.bogdan.chatoverflow.service.AuthenticationService;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+
+@CrossOrigin()
 @Controller
 @RequestMapping("/authentication")
-@CrossOrigin()
 public class AuthenticationController {
 
     @Autowired
@@ -23,10 +25,10 @@ public class AuthenticationController {
 
     @RequestMapping(method = RequestMethod.POST, value ="/registerUser")
     @ResponseBody
-    private String registerRegularUser(@RequestBody UserDTO userDTO) {
+    private String registerRegularUser(@RequestBody RegisterDTO registerDTO) {
         String status = "User created";
         try {
-            authenticationService.registerRegularUser(userDTO);
+            authenticationService.registerRegularUser(registerDTO);
         } catch (ValidateUserException validateUserException) {
             status = validateUserException.getMessage();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
@@ -42,7 +44,7 @@ public class AuthenticationController {
         AuthenticationDTO authenticationDTO = new AuthenticationDTO("Something went wrong");
         try {
             authenticationDTO = authenticationService.login(loginDTO);
-        } catch (InvalidLoginException invalidLoginException) {
+        } catch (InvalidLoginException | UserIsBannedException invalidLoginException) {
             authenticationDTO = new AuthenticationDTO(invalidLoginException.getMessage());
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             System.out.println(e.getMessage());

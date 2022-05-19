@@ -3,17 +3,20 @@ package ro.bogdan.chatoverflow.DTO;
 import ro.bogdan.chatoverflow.model.Role;
 
 public class AuthenticationDTO {
+    int userId;
     String username;
     Role role;
     String errorMessage;
 
-    public AuthenticationDTO(String username, Role role, String errorMessage) {
+    public AuthenticationDTO(int userId,String username, Role role, String errorMessage) {
+        this.userId = userId;
         this.username = username;
         this.role = role;
         this.errorMessage = errorMessage;
     }
 
-    public AuthenticationDTO(String username, Role role) {
+    public AuthenticationDTO(int userId, String username, Role role) {
+        this.userId = userId;
         this.username = username;
         this.role = role;
     }
@@ -39,6 +42,14 @@ public class AuthenticationDTO {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getErrorMessage() {

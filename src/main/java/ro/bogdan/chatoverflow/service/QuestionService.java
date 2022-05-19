@@ -8,10 +8,7 @@ import ro.bogdan.chatoverflow.model.Question;
 import ro.bogdan.chatoverflow.model.User;
 import ro.bogdan.chatoverflow.repository.IQuestionRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class QuestionService {
@@ -86,6 +83,10 @@ public class QuestionService {
         return covertToDTO(question);
     }
 
+    public void saveQuestion(Question question) {
+        this.iQuestionRepository.save(question);
+    }
+
     public List<QuestionDTO> getQuestionsByTag(String tag) {
         List<Question> questions = tagItemService.getQuestionsByTag(tag);
         ArrayList<QuestionDTO> questionDTOS = new ArrayList<>();
@@ -104,6 +105,7 @@ public class QuestionService {
             initialQuestion.setTitle(questionDTO.getTitle());
         }
         tagItemService.updateTagItems(questionDTO.getTags(), questionFromDTO);
+        this.saveQuestion(initialQuestion);
         return covertToDTO(iQuestionRepository.findById(questionDTO.getQuestionId()).get());
     }
 

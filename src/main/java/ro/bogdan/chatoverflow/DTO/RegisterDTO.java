@@ -1,6 +1,6 @@
 package ro.bogdan.chatoverflow.DTO;
 
-public class UserDTO {
+public class RegisterDTO {
 
     private String username;
 
@@ -10,14 +10,14 @@ public class UserDTO {
 
     private String email;
 
-    public UserDTO(String username, String password, String passwordValidation, String email) {
+    public RegisterDTO(String username, String password, String passwordValidation, String email) {
         this.username = username;
         this.password = password;
         this.passwordValidation = passwordValidation;
         this.email = email;
     }
 
-    public UserDTO() {
+    public RegisterDTO() {
     }
 
     public String getUsername() {

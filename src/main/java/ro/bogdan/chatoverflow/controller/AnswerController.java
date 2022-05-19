@@ -32,7 +32,7 @@ public class AnswerController {
         return answerService.updateAnswer(answerDTO);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "delete")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
     @ResponseBody
     private String deleteAnswer(@RequestParam("id") int id) {
         try {
