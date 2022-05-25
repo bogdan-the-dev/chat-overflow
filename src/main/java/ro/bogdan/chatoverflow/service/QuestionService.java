@@ -109,7 +109,7 @@ public class QuestionService {
         return covertToDTO(iQuestionRepository.findById(questionDTO.getQuestionId()).get());
     }
 
-    private QuestionDTO covertToDTO(Question question) {
+    public QuestionDTO covertToDTO(Question question) {
         if (question != null) {
             QuestionDTO questionDTO = modelMapper.map(question, QuestionDTO.class);
             modelMapper.map(question.getAuthor(), questionDTO);

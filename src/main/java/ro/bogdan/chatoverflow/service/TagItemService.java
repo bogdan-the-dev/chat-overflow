@@ -5,12 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ro.bogdan.chatoverflow.DTO.QuestionDTO;
 import ro.bogdan.chatoverflow.model.Question;
 import ro.bogdan.chatoverflow.model.Tag;
 import ro.bogdan.chatoverflow.model.TagItem;
 import ro.bogdan.chatoverflow.repository.ITagItemRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +42,9 @@ public class TagItemService {
                 questions.add(tagItem.getQuestion());
             }
         }
-        return questions;
+        ArrayList<Question> questionsSorted = (ArrayList<Question>) questions.stream().sorted(Comparator.comparing(Question::getCreationDate)).collect(Collectors.toList());
+        Collections.reverse(questionsSorted);
+        return questionsSorted;
     }
 
     public void updateTagItems(List<String> newTags, Question question) {
@@ -78,4 +83,5 @@ public class TagItemService {
         }
         return tagItem;
     }
+
 }
